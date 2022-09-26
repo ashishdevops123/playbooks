@@ -75,7 +75,7 @@
       notify:
         - restart the tomcatservice
     - name: Force all notified handlers to run at this point, not waiting for normal sync points
-        meta: flush_handlers
+      meta: flush_handlers
     - name: daemon reload , enable and restart
       systemd:
         name: 'tomcat.service'
