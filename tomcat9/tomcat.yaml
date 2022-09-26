@@ -11,6 +11,15 @@
     - tomcat_latest: /opt/tomcat/latest
     - tomcat_service_remote: /etc/systemd/system/tomcat.service
     - java_home: /usr/lib/jvm/java-11-openjdk-amd64
+    - tomcat_admin_user: devops
+    - tomcat_admin_password: devops
+    - tomcat_users_relative: conf/tomcat-users.xml
+    - tomcat_manager_allow_ipregex: ".*"
+    - tomcat_allow_context_locations:
+        - /opt/tomcat/latest/webapps/manager/META-INF/context.xml
+        - /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
+    - deploy_file_name: jenkins.war
+    - deploy_url: https://mirrors.tuna.tsinghua.edu.cn/jenkins/war-stable/2.332.1/jenkins.war
   tasks:
     - name: update cache
       apt:
@@ -77,6 +86,21 @@
         - reload restart execute
     - name: Force all notified handlers to run at this point, not waiting for normal sync points
       meta: flush_handlers
+    - name: allow hostmanager and manager from specified ip range
+      ansible.builtin.template:
+        src: 'manager-context.xml.j2'
+        dest: "{{ item }}"
+        owner: "{{ tomcat_user }}"
+        group: "{{ tomcat_user }}"
+      loop: "{{ tomcat_allow_context_locations }}"
+      notify:
+        - reload the daemon, enable and start the tomcat service
+    - name: deploy any war file
+      ansible.builtin.get_url:
+        url: "{{ deploy_url }}"
+        dest: "{{ tomcat_latest }}/webapps/{{ deploy_file_name }}"
+        owner: "{{ tomcat_user }}"
+        group: "{{ tomcat_user }}"
     - name: daemon reload , enable and restart
       systemd:
         name: 'tomcat.service'
