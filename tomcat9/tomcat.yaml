@@ -60,3 +60,12 @@
     - name: printing all the shell files
       debug:
         var: shell_files
+    - name: providing executable permissions for shell files
+      file:
+        path: '{{ item.path }}'
+        group: "{{ tomcat_user }}"
+        owner:  "{{ tomcat_user }}"
+        mode: '755'
+      loop: {{ shell_files.files }}
+ 
+  
