@@ -42,7 +42,7 @@
         remote_src: yes
     - name: creating a symlink
       file:
-        src: "{{ home_dir }}/apache-tomcat-${VERSION}"
+        src: "{{ home_dir }}/apache-tomcat-{{ version }}"
         dest: "{{ tomcat_latest }}"
         owner: "{{ tomcat_user }}"
         group: "{{ tomcat_user }}"
