@@ -79,10 +79,9 @@
     - name: daemon reload , enable and restart
       systemd:
         name: 'tomcat.service'
-        state: started
+        state: 'started'
   handlers:
-    - restart the tomcatservice    
-    - name: daemon reload , enable and restart
+    - name: restart the tomcatservice    
       systemd:
         name: 'tomcat.service'
         daemon_reload: yes
