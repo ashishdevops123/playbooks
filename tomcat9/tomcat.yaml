@@ -71,7 +71,7 @@
       loop: "{{ shell_files.files }}"
     - name: copying the tomcat service file to remote node
       copy:
-        src: 'tomcatservice.j2'
+        src: 'tomcat.service.j2'
         dest: "{{ tomcat_service_remote }}"
       notify:
         - reload restart execute
