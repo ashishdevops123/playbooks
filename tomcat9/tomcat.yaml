@@ -32,4 +32,8 @@
       get_url:
         url: https://dlcdn.apache.org/tomcat/tomcat-9/v{{ version }}/bin/apache-tomcat-{{ version }}.tar.gz 
         dest: /tmp/apache-tomcat-{{ version }}.tar.gz 
+    - name: extracting the tomcat
+      unarchive:
+        src: /tmp/apache-tomcat-{{ version }}.tar.gz
+        dest: "{{ home_dir }}"
 
