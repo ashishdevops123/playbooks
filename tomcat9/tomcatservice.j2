@@ -1,5 +1,5 @@
 [Unit]
-Description=Tomcat 9 servlet container
+Description=Tomcat 9 servlet container From Ansible
 After=network.target
 
 [Service]
@@ -8,7 +8,7 @@ Type=forking
 User={{ tomcat_user }}
 Group={{ tomcat_user }}
 
-Environment="JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64"
+Environment="JAVA_HOME={{ java_home }}"
 Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true"
 
 Environment="CATALINA_BASE={{ tomcat_latest }}"
