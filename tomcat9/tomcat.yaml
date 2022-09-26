@@ -37,4 +37,9 @@
         src: /tmp/apache-tomcat-{{ version }}.tar.gz
         dest: "{{ home_dir }}"
         remote_src: yes
-
+    - name: creating symlink
+      file:
+        src: /opt/tomcat/apache-tomcat-${VERSION}
+        path: /opt/tomcat/latest
+        owner: "{{ tomcat_user }}"
+        state: link
