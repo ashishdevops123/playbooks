@@ -66,6 +66,6 @@
         group: "{{ tomcat_user }}"
         owner:  "{{ tomcat_user }}"
         mode: '755'
-      loop: {{ shell_files.files }}
+      loop: "{{ shell_files.files }}"
  
   
