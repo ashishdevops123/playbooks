@@ -8,6 +8,7 @@
     - home_dir: /opt/tomcat
     - default_shell: /bin/false
     - version: 9.0.65
+    - tomcat_latest: /opt/tomcat/latest
   tasks:
     - name: update cache
       apt:
@@ -39,3 +40,13 @@
         creates: "{{ home_dir }}/apache-tomcat-{{ version }}"
         owner: "{{ tomcat_user }}"
         remote_src: yes
+    - name: creating a symlink
+      file:
+        src: "{{ home_dir }}/apache-tomcat-${VERSION}"
+        dest: "{{ tomcat_latest }}"
+    - name: changing ownership to user tomcat
+      file:
+        path: "{{ home_dir }}"
+        recurse: yes
+        owner: "{{ tomcat_user }}"
+        group: "{{ tomcat_user }}"
