@@ -3,7 +3,7 @@
   become: yes
   hosts: all
   vars:
-    - java-version: openjdk-11-jdk
+    - java-version: 'openjdk-11-jdk'
     - tomcat_user: tomcat
     - home_dir: /opt/tomcat
     - default_shell: /bin/false
