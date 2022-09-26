@@ -81,7 +81,7 @@
         name: 'tomcat.service'
         state: 'started'
   handlers:
-    - name:restart the tomcatservice    
+    - name: restart the tomcatservice    
       systemd:
         name: 'tomcat.service'
         daemon_reload: yes
