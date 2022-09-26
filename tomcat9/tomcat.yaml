@@ -44,6 +44,9 @@
       file:
         src: "{{ home_dir }}/apache-tomcat-${VERSION}"
         dest: "{{ tomcat_latest }}"
+        owner: "{{ tomcat_user }}"
+        group: "{{ tomcat_user }}"
+        state: link
     - name: changing ownership to user tomcat
       file:
         path: "{{ home_dir }}"
