@@ -38,4 +38,5 @@
         dest: "{{ tomcat_user }}/apache-tomcat-{{ version }}"
         creates: "{{ tomcat_user }}/apache-tomcat-{{ version }}"
         owner: "{{ tomcat_user }}"
+        remote_src: yes
     
