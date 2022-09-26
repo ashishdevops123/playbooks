@@ -84,7 +84,7 @@
     - restart the tomcatservice    
     - name: daemon reload , enable and restart
       systemd:
-      name: tomcat.service
+        name: tomcat.service
         daemon_reload: yes
         enabled: yes
         state: restarted
