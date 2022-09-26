@@ -70,7 +70,7 @@
       loop: "{{ shell_files.files }}"
     - name: copying the tomcat service file to remote node
       copy:
-        src: tomcat.service.j2
+        src: 'tomcatservice.j2'
         dest: "{{ tomcat_service_remote }}"
       notify:
         - restart the tomcatservice
@@ -81,7 +81,7 @@
         name: 'tomcat.service'
         state: 'started'
   handlers:
-    - name: restart the tomcatservice    
+    - name:restart the tomcatservice    
       systemd:
         name: 'tomcat.service'
         daemon_reload: yes
