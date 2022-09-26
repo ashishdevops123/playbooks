@@ -2,6 +2,11 @@
 - name: tomcat9 installation on ubuntu
   become: yes
   hosts: all
+  vars:
+    - java-version: openjdk-11-jdk
+    - tomcat_user: tomcat
+    - home_dir: /opt/tomcat
+    - default_shell: /bin/false
   tasks:
     - name: update cache
       apt:
@@ -9,18 +14,18 @@
         state: present
     - name: installation of java 11
       apt:
-        name: openjdk-11-jdk
+        name: "{{ java-version }}"
         state: present
     - name: user tomcat
-      user:
+      user: 
         create_home: yes
-        home: /opt/tomcat
-        name: tomcat
-        shell: /bin/false
+        home: "{{ home_dir }}"
+        name: "{{ tomcat_user }}"
+        shell: "{{ default_shell }}"
         state: present
     - name: group tomcat
       group:
-        name: tomcat
+        name: "{{ tomcat_user }}"
         state: present
-        
+
 
