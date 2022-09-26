@@ -51,5 +51,12 @@
       file:
         path: "{{ home_dir }}"
         recurse: yes
-        owner: "{{ tomcat_user }}"
-        group: "{{ tomcat_user }}"
+        state: directory
+    - name: finding all the shell files and storing
+      find:
+        paths: "{{ tomcat_latest }}/bin"
+        patterns: "*.sh"
+      register: shell_files
+    - name: printing all the shell files
+      debug:
+        var: shell_files
