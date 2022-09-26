@@ -35,8 +35,7 @@
     - name: extracting the tomcat
       unarchive:
         src: "/tmp/apache-tomcat-{{ version }}.tar.gz"
-        dest: "{{ tomcat_user }}/apache-tomcat-{{ version }}"
-        creates: "{{ tomcat_user }}/apache-tomcat-{{ version }}"
+        dest: "{{ home_dir }}/apache-tomcat-{{ version }}"
+        creates: "{{ home_dir }}/apache-tomcat-{{ version }}"
         owner: "{{ tomcat_user }}"
         remote_src: yes
-    
