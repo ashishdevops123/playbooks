@@ -7,6 +7,7 @@
     - tomcat_user: tomcat
     - home_dir: /opt/tomcat
     - default_shell: /bin/false
+    - version: 9.0.65
   tasks:
     - name: update cache
       apt:
@@ -27,5 +28,8 @@
       group:
         name: "{{ tomcat_user }}"
         state: present
-
+    - name: downloading tomcat
+      get_url:
+      url: https://dlcdn.apache.org/tomcat/tomcat-9/v{{ version }}/bin/apache-tomcat-{{ version }}.tar.gz 
+      dest: /tmp/apache-tomcat-{{ version }}.tar.gz 
 
