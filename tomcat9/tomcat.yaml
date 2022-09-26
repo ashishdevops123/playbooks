@@ -73,7 +73,7 @@
         src: 'tomcatservice.j2'
         dest: "{{ tomcat_service_remote }}"
       notify:
-        - restart the tomcatservice
+        - reload restart execute
     - name: Force all notified handlers to run at this point, not waiting for normal sync points
       meta: flush_handlers
     - name: daemon reload , enable and restart
@@ -81,7 +81,7 @@
         name: 'tomcat.service'
         state: 'started'
   handlers:
-    - name: restart the tomcatservice    
+    - name: reload restart execute    
       systemd:
         name: 'tomcat.service'
         daemon_reload: yes
