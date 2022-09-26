@@ -34,8 +34,8 @@
         dest: /tmp/apache-tomcat-{{ version }}.tar.gz 
     - name: extracting the tomcat
       unarchive:
-        src: /tmp/apache-tomcat-{{ version }}.tar.gz
-        dest: {{ home_dir }}/apache-tomcat-{{ version }}.tar.gz
+        src: "/tmp/apache-tomcat-{{ version }}.tar.gz"
+        dest: "{{ home_dir }}/apache-tomcat-{{ version }}.tar.gz"
         remote_src: yes
     - name: creating symlink
       file:
