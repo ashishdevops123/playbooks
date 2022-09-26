@@ -9,6 +9,7 @@
     - default_shell: /bin/false
     - version: 9.0.65
     - tomcat_latest: /opt/tomcat/latest
+    - tomcat_service_remote: /etc/systemd/system/tomcat.service
   tasks:
     - name: update cache
       apt:
@@ -67,5 +68,17 @@
         owner:  "{{ tomcat_user }}"
         mode: '755'
       loop: "{{ shell_files.files }}"
+    - name: copying the tomcat service file to remote node
+      copy:
+        src: 'tomcat.service'
+        dest: "{{ tomcat_service_remote }}"
+    - name: daemon reload , enable and restart
+      systemd:
+        name: tomcat.service
+        daemon_reload: yes
+        enabled: yes
+        state: started
+
+
  
   
