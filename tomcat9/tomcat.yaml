@@ -74,8 +74,8 @@
         dest: "{{ tomcat_service_remote }}"
       notify:
         - restart the tomcatservice
-    - name: forcing all the handlers to execute at this point only
-      meta: flush handlers
+    - name: Force all notified handlers to run at this point, not waiting for normal sync points
+        meta: flush_handlers
     - name: daemon reload , enable and restart
       systemd:
         name: 'tomcat.service'
