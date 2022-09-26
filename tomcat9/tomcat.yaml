@@ -11,4 +11,11 @@
       apt:
         name: openjdk-11-jdk
         state: present
-         
+    - name: useradd tomcat
+      user:
+        create_home: yes
+        home: /opt/tomcat
+        name: tomcat
+        shell: /bin/false
+        state: present
+
